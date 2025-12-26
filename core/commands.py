@@ -1,26 +1,90 @@
 from telegram import Update
 from telegram.ext import ContextTypes
+from telegram.constants import ParseMode
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
     await update.message.reply_text(
-        "👋 Hello!\n\n"
-        "I am a Group & Channel Manager Bot.\n"
-        "I help admins manage welcome messages and keep groups clean.\n\n"
-        "Use /help to see available commands."
+        f"""
+👋 Hello {user.first_name}!
+
+I am **TG Ustad** — a smart Telegram Group & Channel Manager.
+
+🔐 You can securely connect your **personal Telegram account**
+to unlock advanced admin tools like:
+• Deleted account cleanup
+• Mass mentions
+• Session-based actions
+
+Use /help to see everything I can do.
+
+🚀 More advanced features coming soon.
+""",
+        parse_mode=ParseMode.MARKDOWN
     )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "📖 **Bot Help Menu**\n\n"
-        "👤 *Admin Commands*\n"
-        "/welcome  Enable and  Disable, Custom massege, default reset massege\n"
-        "/cleaner_on – Enable Deletes join/left \n"
-        "/cleaner_off – Disable Deletes join/left \n\n"
-        "⚙️ *Automatic Features*\n"
-        "• Sends welcome message to new members\n"
-        "• Deletes join/left system messages automatically\n\n"
-        "🔒 Note: Admin-only commands can only be used by group admins.",
-        parse_mode="Markdown"
+        """
+📖 **TG Ustad – Help Menu**
+
+━━━━━━━━━━━━━━━
+👥 **Group Management**
+━━━━━━━━━━━━━━━
+• Auto welcome message
+• Delete join / left system messages
+• Deleted account cleanup (session based)
+
+━━━━━━━━━━━━━━━
+🔐 **Session Management**
+━━━━━━━━━━━━━━━
+• /session – Open session control panel
+• Create session via OTP (private)
+• Import existing `.session` file
+• Session reuse across features
+• Logout & session status
+
+⚠️ Your phone number & OTP are never stored.
+
+━━━━━━━━━━━━━━━
+🚫 **Spam Protection**
+━━━━━━━━━━━━━━━
+• Keyword & regex based detection
+• Link & @mention blocking
+• External spam API (optimized)
+• Cached API results
+• 3 strikes → 24h mute
+• Admin messages ignored
+
+━━━━━━━━━━━━━━━
+📣 **Mass Tools**
+━━━━━━━━━━━━━━━
+• Mass mention users
+• Active user tagging
+• Admin-only & rate-limited
+
+━━━━━━━━━━━━━━━
+🛠 **Admin Utilities**
+━━━━━━━━━━━━━━━
+• Admin-only commands
+• Permission caching
+• Modular feature system
+
+━━━━━━━━━━━━━━━
+🚀 **Coming Soon**
+━━━━━━━━━━━━━━━
+• Live stream control
+• Icecast audio streaming
+• Media playlists
+
+━━━━━━━━━━━━━━━
+ℹ️ **Important**
+━━━━━━━━━━━━━━━
+• Add bot as **admin**
+• Enable delete & restrict permissions
+• Use session commands only in **private chat**
+""",
+        parse_mode=ParseMode.MARKDOWN
     )

@@ -6,6 +6,7 @@ from core.error_handler import error_handler
 from config.logging import setup_logging
 
 from telegram.ext import CommandHandler
+from core.command_menu import setup_command_menu
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
 
     async def post_init(app):
         await db.connect()
-
+        await setup_command_menu(app.bot)
     app.post_init = post_init
 
     # Core commands
@@ -26,7 +27,6 @@ def main():
 
     # Global error handler
     app.add_error_handler(error_handler)
-
     app.run_polling()
 
 
